@@ -14,7 +14,72 @@
 </head>
 
 <body>
-    <div id="main">
+    <div id="game-area">
+        <h1>Tic-Tac-Toe</h1>
+        <div id="game-set-up">
+            <form id="player-info">
+                <fieldset>
+                    <legend>Player Info</legend>
+
+                    <div>
+                        <label for="player1-input">Player 1</label>
+                        <input type="text" placeholder="Derp McMerp" name="player1-input" id="player1-input">
+                    </div>
+
+                    <div>
+                        <label for="player2-input">Player 2</label>
+                        <input type="text" placeholder="Scoop dePoop" name="player2-input" id="player2-input">
+                    </div>
+
+                    <div>
+                        <label for="number-players">Number of Players</label>
+                        <input type="radio" name="number-players" id="two-players" value="two-players" class="radio"
+                            checked />
+                        <label for="two-players" class="radio-label"><i class="fas fa-user-friends"></i></label>
+                        <input type="radio" name="number-players" id="one-player" value="one-player" class="radio" />
+                        <label for="one-player" class="radio-label"><i class="fas fa-robot"></i></label>
+                    </div>
+
+                    <button type="button" id="play-game" class="adder">Play Game!</button>
+
+                </fieldset>
+            </form>
+            <div id="game-info">
+
+                <div id="player1-info" class="player-info ">
+                    <div class="player-name" id="player1-name">Player 1</div>
+                    <div id="player1-score" class="score">0</div>
+                </div>
+                <div id="tie" class="player-info">
+                    <div class="player-name">Ties</div>
+                    <div id="tie-count" class="score">0</div>
+                </div>
+                <div id="player2-info" class="player-info">
+                    <div class="player-name" id="player2-name">Player 2</div>
+                    <div id="player2-score" class="score">0</div>
+                </div>
+                <button id="new-game" class="adder">New Game</button>
+                <button id="score-reset" class="adder">Reset Game</button>
+                <button id="reset-button" class="adder">New Round</button>
+
+
+            </div>
+
+        </div>
+        <div id="gameboard">
+            <div class="game-space" id="space1"></div>
+            <div class="game-space" id="space2"></div>
+            <div class="game-space" id="space3"></div>
+            <div class="game-space" id="space4"></div>
+            <div class="game-space" id="space5"></div>
+            <div class="game-space" id="space6"></div>
+            <div class="game-space" id="space7"></div>
+            <div class="game-space" id="space8"></div>
+            <div class="game-space" id="space9"></div>
+
+        </div>
+
+
 
     </div>
 

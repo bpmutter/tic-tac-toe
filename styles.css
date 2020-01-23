@@ -1,0 +1,190 @@
+body{
+    background-image: url(tic-tac-toe-background.png);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: monospace;
+    font-size: 16px;
+    color: 	#404040;
+}
+h1{
+    text-align: center;
+    font-size: 2em;
+}
+
+form{
+
+    grid-column: 1/2;
+}
+form button:focus {
+  outline:0;
+}
+form button:hover{
+    border: darkgray 1px solid;
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+fieldset{
+    border-radius: 1rem;
+    border: 2px #404040 solid;
+
+}
+legend{
+    font-size: 1.25em;
+    border: 1px solid #404040;
+    border-radius: 1rem;
+    padding: .2rem 1rem;
+    margin: 0 .5rem;
+    background-color: whitesmoke;
+}
+
+fieldset div{
+    margin: 1rem 0;
+}
+
+label{
+    display:inline-block;
+    text-align:left;
+    font-size: 16px;
+    width: 200px;
+}
+input, textarea{
+    width: 250px;
+    border-radius: 1px;
+    border: 1px solid whitesmoke;
+    font-family: monospace;
+    font-size: 14px;
+}
+.radio{
+    width:15px !important;
+}
+.radio-label{
+    width: 20px !important;
+}
+.adder{
+    background-color: #404040;
+    color: whitesmoke;
+    border-radius: .5rem;
+    font-size: 12px;
+    font-family: monospace;
+    padding: .5rem;
+    display: inline-block;
+    margin: 0 auto;
+}
+.adder:hover{
+    border: #404040 solid 1px;
+    background-color: #a2a2a2;
+    color: whitesmoke;
+}
+.adder:focus{
+    outline: 0;
+}
+.player-info{
+    text-align: center;
+}
+
+
+.player-name{
+
+    padding: .5rem .75rem;
+    border-radius: 3rem;
+    display: inline-block;
+
+}
+.active-player{
+    background-color: #a9a9a9;
+}
+.score{
+    padding-top: .5rem;
+}
+.game-space{
+    width: 160px;
+    height: 160px;
+    border: #404040 1px solid;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 120px;
+    text-align: center;
+    padding: 10px 0;
+}
+.game-space:hover{
+    background-color: whitesmoke;
+}
+
+#game-setup{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#player-info{
+    grid-column: 1/2;
+}
+#game-info{
+    grid-column: 2/3;
+    border-radius: 1rem;
+    border: 2px #404040 solid;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    grid-template-rows: 2fr 1fr;
+    padding: .5rem;
+}
+
+#player1-info{
+    width: auto;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+#tie{
+    text-align: center;
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+#player2-info{
+    width: auto;
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+#player1-info, #tie, #player2-info{
+    height: 90px;
+}
+
+#new-game{
+grid-column: 1/2;
+grid-row: 2/3;
+}
+
+#score-reset{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+#reset-button{
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+
+#game-area{
+    background-color: rgb(255,255,255, .85);
+    height: auto;
+    width: auto;
+    margin:0 10%;
+
+    margin-top: 4%;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    border-radius: 3rem;
+}
+
+#gameboard{
+    width: 480px;
+    height: 480px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: 3px #404040 solid;
+    border-radius: 5px;
+}
+
+
