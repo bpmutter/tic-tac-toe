@@ -12,8 +12,8 @@ h1{
 }
 
 form{
-
-    grid-column: 1/2;
+    display: block;
+    height: 150px;
 }
 form button:focus {
   outline:0;
@@ -21,6 +21,11 @@ form button:focus {
 form button:hover{
     border: darkgray 1px solid;
       box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+button{
+    padding: .75rem;
+    height: 2rem;
+    width: auto;
 }
 
 fieldset{
@@ -69,6 +74,7 @@ input, textarea{
     padding: .5rem;
     display: inline-block;
     margin: 0 auto;
+    margin-top: 1rem;
 }
 .adder:hover{
     border: #404040 solid 1px;
@@ -110,6 +116,10 @@ input, textarea{
     background-color: whitesmoke;
 }
 
+#game-on{
+    display: none;
+}
+
 #game-setup{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -120,12 +130,11 @@ input, textarea{
 }
 #game-info{
     grid-column: 2/3;
-    border-radius: 1rem;
-    border: 2px #404040 solid;
-    display: grid;
-    grid-template-columns: 1fr 80px 1fr;
-    grid-template-rows: 2fr 1fr;
-    padding: .5rem;
+    display: none; /*display changed to grid in the JS */
+    grid-template-columns: 1fr 90px 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 172px;
+
 }
 
 #player1-info{
@@ -185,6 +194,9 @@ grid-row: 2/3;
     grid-template-rows: 1fr 1fr 1fr;
     border: 3px #404040 solid;
     border-radius: 5px;
+}
+#game-board-box{
+    padding-top: 5rem;
 }
 
 

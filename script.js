@@ -64,6 +64,12 @@ document.getElementById("play-game").addEventListener("click", () => {
 
 const playGame = function () {
 
+    //shows play game content in box and hides the game set up
+    document.getElementById("add-player-info").style.display = "none";
+    document.getElementById("game-on").style.display = "inline";
+    document.getElementById("player-info-form").style.display = "none";
+    document.getElementById("game-info").style.display = "grid";
+
     let tieCount = 0;
     let isGameOver = false;
 
@@ -116,6 +122,18 @@ const playGame = function () {
     let resetButton = document.getElementById("reset-button");
     resetButton.addEventListener("click", () => {
         startRound()
+
+    });
+
+    let newGamebutton = document.getElementById("new-game");
+    newGamebutton.addEventListener("click", () => {
+        document.getElementById("add-player-info").style.display = "inline";
+        document.getElementById("game-on").style.display = "none";
+        document.getElementById("player-info-form").style.display = "inline-block";
+        document.getElementById("game-info").style.display = "none";
+
+        //remove event listener for board so user can't keep playing
+        isGameOver = true;
 
     });
 
