@@ -11,7 +11,7 @@ const Player = (name, playerMove, isHuman) => {
     }
     const playerInfo = () => console.log(`Name: ${name}, PlayerNum: ${playerMove}, Human: ${isHuman}`);
     const moveAI = (thisBoard) => {
-        debugger;
+
         if (isHuman === false) {
             let spaceFound = false;
             let move;
@@ -29,18 +29,8 @@ const Player = (name, playerMove, isHuman) => {
 };
 const Space = (value, location) => {
     let spaceInfo = console.log("space value" + value + "location " + location);
-    let clicked = (player) => {
-        if (player === player1) {
 
-            value = player1.playerMove;
-            location.innerHTML = value;
-        }
-        if (player === player2) {
-            value = player2.playerMove;
-            location.innerHTML = value;
-        }
-    }
-    return { value, location, clicked, spaceInfo }
+    return { value, location, spaceInfo }
 }
 
 //get the player info
@@ -51,12 +41,12 @@ document.getElementById("play-game").addEventListener("click", () => {
     let player2Name = document.getElementById("player2-input").value;
     if (document.getElementsByName("number-players")[0].checked) {
         player1 = Player(player1Name, "X", true);
-        player2 = Player(player2Name, "0", true);
+        player2 = Player(player2Name, "O", true);
 
     }
     else {
         player1 = Player(player1Name, "X", true);
-        player2 = Player(player2Name, "0", false);
+        player2 = Player(player2Name, "O", false);
     }
     //gives default name values if no name entered
     document.getElementById("player1-score").innerHTML = player1.playerScore;
@@ -101,9 +91,9 @@ const playGame = function () {
             }
             if (thisBoard[i].location.innerHTML !== "") return;
             else if (player1Move === true) {
-                thisBoard[i].clicked(player1);
-                console.log("board space value  " + thisBoard[i].value)
-                thisBoard[i].value = "X";
+                thisBoard[i].value = player1.playerMove;
+                thisBoard[i].location.innerHTML = thisBoard[i].value;
+
                 player1Move = false;
 
                 document.getElementById("player2-name").classList.add("active-player");
@@ -112,8 +102,9 @@ const playGame = function () {
 
                 if (player2.isHuman === false && player1Move === false && isGameOver === false) {
                     let player2move = player2.moveAI(thisBoard);
-                    thisBoard[player2move].clicked(player2);
-                    thisBoard[player2move].value = "O";
+                    debugger;
+                    thisBoard[player2move].value = player2.playerMove;
+                    thisBoard[player2move].location.innerHTML = thisBoard[player2move].value;
 
                     player1Move = true;
                     document.getElementById("player1-name").classList.add("active-player");
@@ -124,9 +115,9 @@ const playGame = function () {
 
             // player 2 move if player2 is human
             else if (player1Move === false && player2.isHuman === true) {
-
-                thisBoard[i].clicked(player2);
-                thisBoard[i].value = "O";
+                debugger;
+                thisBoard[i].value = player2.playerMove;
+                thisBoard[i].location.innerHTML = thisBoard[i].value;
                 player1Move = true;
                 document.getElementById("player1-name").classList.add("active-player");
                 document.getElementById("player2-name").classList.remove("active-player");
@@ -181,8 +172,10 @@ const playGame = function () {
 
     //support function to check if game over
     function gameOver() {
+        console.table(thisBoard);
+        debugger;
 
-        if (winnerCheck(thisBoard[0], thisBoard[1], thisBoard[2]) == true) {
+        if (winnerCheck(thisBoard[1], thisBoard[4], thisBoard[7]) == true) {
             isGameOver = true;
             return
         } else if (winnerCheck(thisBoard[0], thisBoard[3], thisBoard[6]) == true) {
@@ -191,7 +184,8 @@ const playGame = function () {
         } else if (winnerCheck(thisBoard[0], thisBoard[4], thisBoard[8]) == true) {
             isGameOver = true;
             return;
-        } else if (winnerCheck(thisBoard[1], thisBoard[4], thisBoard[7]) == true) {
+
+        } else if (winnerCheck(thisBoard[0], thisBoard[1], thisBoard[2]) == true) {
             isGameOver = true;
             return
         } else if (winnerCheck(thisBoard[2], thisBoard[5], thisBoard[8]) == true) {
@@ -228,7 +222,7 @@ const playGame = function () {
         let firstVal = first.value;
         let secondVal = second.value;
         let thirdVal = third.value;
-
+        debugger;
         if (firstVal === secondVal && firstVal === thirdVal && (firstVal == "X" || firstVal == "O")) {
             if (firstVal == "X") {
                 first.location.style.backgroundColor = "#404040";
