@@ -10,12 +10,28 @@ const Player = (name, playerMove, isHuman) => {
         return playerScore;
     }
     const playerInfo = () => console.log(`Name: ${name}, PlayerNum: ${playerMove}, Human: ${isHuman}`);
-    return { name, playerMove, incrementScore, isHuman, playerInfo, playerScore, resetScore };
+    const moveAI = (thisBoard) => {
+        debugger;
+        if (isHuman === false) {
+            let spaceFound = false;
+            let move;
+            while (spaceFound == false) {
+                move = Math.floor(Math.random() * Math.floor(8));
+                if (thisBoard[move].value === "") {
+                    spaceFound = true;
+                }
+            }
+            return move;
+        }
+        else return
+    }
+    return { name, playerMove, incrementScore, isHuman, playerInfo, playerScore, resetScore, moveAI };
 };
 const Space = (value, location) => {
     let spaceInfo = console.log("space value" + value + "location " + location);
     let clicked = (player) => {
         if (player === player1) {
+
             value = player1.playerMove;
             location.innerHTML = value;
         }
@@ -33,7 +49,6 @@ let player2;
 document.getElementById("play-game").addEventListener("click", () => {
     let player1Name = document.getElementById("player1-input").value;
     let player2Name = document.getElementById("player2-input").value;
-    console.log(document.getElementsByName("number-players")[0].checked)
     if (document.getElementsByName("number-players")[0].checked) {
         player1 = Player(player1Name, "X", true);
         player2 = Player(player2Name, "0", true);
@@ -87,21 +102,38 @@ const playGame = function () {
             if (thisBoard[i].location.innerHTML !== "") return;
             else if (player1Move === true) {
                 thisBoard[i].clicked(player1);
+                console.log("board space value  " + thisBoard[i].value)
                 thisBoard[i].value = "X";
                 player1Move = false;
 
                 document.getElementById("player2-name").classList.add("active-player");
                 document.getElementById("player1-name").classList.remove("active-player");
+                gameOver();
+
+                if (player2.isHuman === false && player1Move === false && isGameOver === false) {
+                    let player2move = player2.moveAI(thisBoard);
+                    thisBoard[player2move].clicked(player2);
+                    thisBoard[player2move].value = "O";
+
+                    player1Move = true;
+                    document.getElementById("player1-name").classList.add("active-player");
+                    document.getElementById("player2-name").classList.remove("active-player");
+                    gameOver();
+                }
             }
-            else if (player1Move === false) {
+
+            // player 2 move if player2 is human
+            else if (player1Move === false && player2.isHuman === true) {
+
                 thisBoard[i].clicked(player2);
                 thisBoard[i].value = "O";
                 player1Move = true;
-
                 document.getElementById("player1-name").classList.add("active-player");
                 document.getElementById("player2-name").classList.remove("active-player");
-            }
-            gameOver();
+                gameOver();
+            } else return;
+
+
         })
     }
 
@@ -177,7 +209,7 @@ const playGame = function () {
         } else if (isFull(thisBoard) == true) {
             tieCount++;
             document.getElementById("tie-count").innerHTML = tieCount;
-        } else console.log("carry on")
+        }
     }
     //checks if board is full
     function isFull(board) {
@@ -186,8 +218,6 @@ const playGame = function () {
         for (let i = 0; i < board.length; i++) {
             boardVals[i] = thisBoard[i].value;
         }
-        debugger;
-        console.table(boardVals)
         if (boardVals.includes("")) return false;
         else return true;
     }
@@ -235,11 +265,9 @@ const createBlankBoard = () => {
         let spaceId = "space" + parseInt(1 + i);
         let spaceLocation = document.getElementById(spaceId);
         board[i] = Space("", spaceLocation);
-        console.log(board[i].location)
         board[i].location.innerHTML = "";
         board[i].location.style.backgroundColor = "";
         board[i].location.style.color = "#404040"
-        console.log(board[i])
 
     }
     return board;
