@@ -11,6 +11,7 @@ const Player = (name, playerMove, isHuman) => {
     }
     const playerInfo = () => console.log(`Name: ${name}, PlayerNum: ${playerMove}, Human: ${isHuman}`);
     const moveAI = (thisBoard) => {
+<<<<<<< HEAD
         if (isHuman === false) {
             openSpaces = [];
             for (let i = 0; i < thisBoard.lenth; i++) {
@@ -19,6 +20,19 @@ const Player = (name, playerMove, isHuman) => {
                 }
             }
 
+=======
+        debugger;
+        if (isHuman === false) {
+            let spaceFound = false;
+            let move;
+            while (spaceFound == false) {
+                move = Math.floor(Math.random() * Math.floor(8));
+                if (thisBoard[move].value === "") {
+                    spaceFound = true;
+                }
+            }
+            return move;
+>>>>>>> master
         }
         else return
     }
@@ -28,6 +42,7 @@ const Space = (value, location) => {
     let spaceInfo = console.log("space value" + value + "location " + location);
     let clicked = (player) => {
         if (player === player1) {
+
             value = player1.playerMove;
             location.innerHTML = value;
         }
@@ -98,15 +113,26 @@ const playGame = function () {
             if (thisBoard[i].location.innerHTML !== "") return;
             else if (player1Move === true) {
                 thisBoard[i].clicked(player1);
+                console.log("board space value  " + thisBoard[i].value)
                 thisBoard[i].value = "X";
                 player1Move = false;
 
                 document.getElementById("player2-name").classList.add("active-player");
                 document.getElementById("player1-name").classList.remove("active-player");
-                if (player2.isHuman === false) {
-                    console.log("the machine will play here :)")
+                gameOver();
+
+                if (player2.isHuman === false && player1Move === false && isGameOver === false) {
+                    let player2move = player2.moveAI(thisBoard);
+                    thisBoard[player2move].clicked(player2);
+                    thisBoard[player2move].value = "O";
+
+                    player1Move = true;
+                    document.getElementById("player1-name").classList.add("active-player");
+                    document.getElementById("player2-name").classList.remove("active-player");
+                    gameOver();
                 }
             }
+
             // player 2 move if player2 is human
             else if (player1Move === false && player2.isHuman === true) {
 
@@ -115,9 +141,10 @@ const playGame = function () {
                 player1Move = true;
                 document.getElementById("player1-name").classList.add("active-player");
                 document.getElementById("player2-name").classList.remove("active-player");
-            }
+                gameOver();
+            } else return;
 
-            gameOver();
+
         })
     }
 
