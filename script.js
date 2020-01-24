@@ -11,16 +11,6 @@ const Player = (name, playerMove, isHuman) => {
     }
     const playerInfo = () => console.log(`Name: ${name}, PlayerNum: ${playerMove}, Human: ${isHuman}`);
     const moveAI = (thisBoard) => {
-<<<<<<< HEAD
-        if (isHuman === false) {
-            openSpaces = [];
-            for (let i = 0; i < thisBoard.lenth; i++) {
-                if (thisBoard.value === "") {
-
-                }
-            }
-
-=======
         debugger;
         if (isHuman === false) {
             let spaceFound = false;
@@ -32,7 +22,6 @@ const Player = (name, playerMove, isHuman) => {
                 }
             }
             return move;
->>>>>>> master
         }
         else return
     }
